@@ -32,7 +32,10 @@ func handleConnection(conn net.Conn) {
 			}
 			log.Fatal(err)
 		}
-		conn.Write(buffer[0:length])
+		_, err = conn.Write(buffer[0:length])
+		if err != nil {
+			log.Fatal(err)
+		}
 	}
 	err := conn.Close()
 	if err != nil {
